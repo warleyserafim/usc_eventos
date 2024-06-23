@@ -12,6 +12,12 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+		<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+		integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js"
+		integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	  	<script src="script.js" type="text/javascript" defer></script>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
 
@@ -38,7 +44,7 @@
 							<ul>
 								<li><a href="#intro">Sobre Nos</a></li>
 								<li><a href="#work">Ranking</a></li>
-								<li><a href="#about">Eventos</a></li>
+								<li><a href="#proximos_eventos">Eventos</a></li>
 								<li><a href="#contact">Contato</a></li>
 								<li><a href="#elements">Elements</a></li>
 							</ul>
@@ -98,10 +104,11 @@
 							</article>
 
 						<!-- About -->
-							<article id="about">
-								<h2 class="major">About</h2>
-								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
-								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+							<article id="proximos_eventos">
+								<h2 class="major">Próximos Eventos</h2>
+
+								<div id="events-container" class="events-container events-grid"></div>
+
 							</article>
 
 						<!-- Contact -->
