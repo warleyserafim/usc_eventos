@@ -1650,11 +1650,6 @@ input, select, textarea {
 		}
 		.slider:after,
 		.slider:before {
-			background: linear-gradient(
-				to right,
-				#efeef2 0%,
-				hsla(0, 0%, 100%, 0) 100%
-			);
 			content: "";
 			height: 75pt;
 			position: absolute;
@@ -1668,11 +1663,6 @@ input, select, textarea {
 		}
 		.slider:after,
 		.slider:before {
-			background: linear-gradient(
-				to right,
-				#efeef2 0%,
-				hsla(0, 0%, 100%, 0) 100%
-			);
 			content: "";
 			height: 75pt;
 			position: absolute;
@@ -1683,7 +1673,7 @@ input, select, textarea {
 		.slider .slide-track-1 {
 			animation: scroll-l 30s linear infinite;
 			display: flex;
-			width: 2500px;
+			width: 1850px;
 		}
 		.slider .slide-track-2 {
 			animation: scroll-r 30s linear infinite;
