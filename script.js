@@ -23,7 +23,9 @@ function displayEvents(events) {
 // Carregar os dados da Google Sheet
 const sheetId = "1SmOUrkJqCRIRqO2rInjG1gYABrouGzw8TblBPykG06E";
 const sheetName = encodeURIComponent("PROXIMOS EVENTOS");
+const sheetRanking = encodeURIComponent("RANKING");
 const sheetURL = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetName}`;
+const sheetURLRanking = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetRanking}`;
 
 fetch(sheetURL)
     .then((response) => response.text())
@@ -53,3 +55,35 @@ function csvToObjects(csv) {
 function csvSplit(row) {
     return row.split(",").map((val) => val.substring(1, val.length - 1));
 }
+
+// Ranking
+
+
+function createRankingItem(rank) {
+    let item = document.createElement("div");
+    item.classList.add("ranking-item");
+    item.innerHTML = `
+        <a href=${rank.LINK} class="ranking-button"><i class="fas fa-trophy"></i> Ver Ranking</a>
+
+    `;
+    return item;
+}
+
+function displayRanking(rankings) {
+    let container = document.querySelector(".ranking-container");
+    rankings.forEach((rank) => {
+        container.appendChild(createRankingItem(rank));
+    });
+}
+
+
+fetch(sheetURLRanking)
+    .then((response) => response.text())
+    .then((csvText) => handleRankingResponse(csvText));
+
+function handleRankingResponse(csvText) {
+    let sheetObjects = csvToObjects(csvText);
+    displayRanking(sheetObjects);
+    console.log(sheetObjects);
+}
+

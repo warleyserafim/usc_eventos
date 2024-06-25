@@ -1755,3 +1755,30 @@ input, select, textarea {
         grid-template-columns: 1fr; /* Muda para uma coluna */
     }
 }
+
+.ranking-container {
+	display: flex;
+	justify-content: center;
+}
+
+.ranking-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid #DB841D;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline from link */
+    transition: background-color 0.3s;
+}
+
+.ranking-button:hover {
+    background-color: #DB841D;
+}
+
+.ranking-button i {
+    margin-right: 8px;
+}
