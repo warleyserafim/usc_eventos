@@ -114,28 +114,29 @@
 							</article>
 
 						<!-- Contact -->
-							<article id="contact">
-								<h2 class="major">Contato</h2>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Nome</label>
-											<input type="text" name="name" id="name" />
-										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
-										</div>
-										<div class="field">
-											<label for="message">Escreva sua Mensagem</label>
-											<textarea name="message" id="message" rows="4"></textarea>
-										</div>
+						<article id="contact">
+							<h2 class="major">Contato</h2>
+							<form id="contact-form" method="post" action="https://formspree.io/f/manwwpao">
+								<div class="fields">
+									<div class="field half">
+										<label for="name">Nome</label>
+										<input type="text" name="name" id="name" required />
 									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Enviar Mensagem" class="primary" /></li>
-										<li><input type="reset" value="Cancelar" /></li>
-									</ul>
-								</form>
+									<div class="field half">
+										<label for="email">Email</label>
+										<input type="email" name="email" id="email" required />
+									</div>
+									<div class="field">
+										<label for="message">Escreva sua Mensagem</label>
+										<textarea name="message" id="message" rows="4" required></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Enviar Mensagem" class="primary" /></li>
+									<li><input type="reset" value="Cancelar" /></li>
+								</ul>
+								<p id="form-status"></p>
+							</form>
 								<ul class="icons">
 									<li><a href="https://www.tiktok.com/@reinaldocacapa" class="fa-brands fa-tiktok"><span class="label"></span></a></li>
 									<li><a href="https://www.facebook.com/USC-Campeonato-Brasileiro-de-Som-Automotivo-1374692372797510" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
@@ -162,6 +163,31 @@
 
 		<!-- BG -->
 			<div id="bg"></div>
+
+
+			<script>
+				document.getElementById('contact-form').addEventListener('submit', function(event) {
+					event.preventDefault();
+					const form = event.target;
+					const formData = new FormData(form);
+					const xhr = new XMLHttpRequest();
+					xhr.open('POST', form.action);
+					xhr.setRequestHeader('Accept', 'application/json');
+					xhr.onreadystatechange = function() {
+						if (xhr.readyState !== XMLHttpRequest.DONE) return;
+						const statusElement = document.getElementById('form-status');
+						if (xhr.status === 200) {
+							form.reset();
+							statusElement.textContent = 'Mensagem enviada com sucesso!';
+							statusElement.style.color = 'green';
+						} else {
+							statusElement.textContent = 'Houve um problema ao enviar sua mensagem.';
+							statusElement.style.color = 'red';
+						}
+					};
+					xhr.send(formData);
+				});
+				</script>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
