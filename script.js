@@ -24,8 +24,10 @@ function displayEvents(events) {
 const sheetId = "1SmOUrkJqCRIRqO2rInjG1gYABrouGzw8TblBPykG06E";
 const sheetName = encodeURIComponent("PROXIMOS EVENTOS");
 const sheetRanking = encodeURIComponent("RANKING");
+const sheetEventosConcluidos = encodeURIComponent("EVENTOS");
 const sheetURL = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetName}`;
 const sheetURLRanking = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetRanking}`;
+const sheetURLEventosConcluidos = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetEventosConcluidos}`;
 
 fetch(sheetURL)
     .then((response) => response.text())
@@ -86,4 +88,44 @@ function handleRankingResponse(csvText) {
     displayRanking(sheetObjects);
     console.log(sheetObjects);
 }
+
+
+// Eventos Concluidos
+
+fetch(sheetURLEventosConcluidos)
+    .then((response) => response.text())
+    .then((csvText) => handleEventosConcluidosResponse(csvText));
+
+function handleEventosConcluidosResponse(csvText) {
+    let sheetObjects = csvToObjects(csvText);
+    displayEventosConcluidos(sheetObjects);
+    console.log(sheetObjects);
+}
+
+
+
+function createEventosConcluidosItem(evento) {
+    let item = document.createElement("div");
+    item.classList.add("event-card");
+    item.innerHTML = `
+        <div class="event-card__image">
+            <img src="${evento.CAPA}" alt="${evento.NOME}">
+        </div>
+        <div class="event-card-info">
+            <div class="event-card__date">${evento.DATA}</div>
+            <div class="event-card__title">${evento.NOME}</div>
+            <a href="${evento.LINK}" class="event-card__button">Ver Fotos</a>
+        </div>
+    `;
+    return item;
+}
+
+
+function displayEventosConcluidos(eventos) {
+    let container = document.querySelector(".eventos-concluidos-container");
+    eventos.forEach((evento) => {
+        container.appendChild(createEventosConcluidosItem(evento));
+    });
+}
+
 
