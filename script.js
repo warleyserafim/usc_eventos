@@ -102,8 +102,6 @@ function handleEventosConcluidosResponse(csvText) {
     console.log(sheetObjects);
 }
 
-
-
 function createEventosConcluidosItem(evento) {
     let item = document.createElement("div");
     item.classList.add("event-card");
@@ -115,7 +113,7 @@ function createEventosConcluidosItem(evento) {
 
     item.innerHTML = `
         <div class="event-card__image">
-            <img src="${evento.CAPA}" alt="${evento.NOME}">
+            <img src="${evento.CAPA}" alt="${evento.NOME}" class="expandable-image">
         </div>
         <div class="event-card-info">
             <div class="event-card__date">${evento.DATA}</div>
@@ -129,13 +127,35 @@ function createEventosConcluidosItem(evento) {
     return item;
 }
 
-
-
 function displayEventosConcluidos(eventos) {
     let container = document.querySelector(".eventos-concluidos-container");
     eventos.forEach((evento) => {
         container.appendChild(createEventosConcluidosItem(evento));
     });
+
+    // Adicione evento de clique às imagens para expandi-las
+    let images = document.querySelectorAll('.expandable-image');
+    images.forEach((img) => {
+        img.addEventListener('click', (event) => {
+            let modal = document.getElementById("imageModal");
+            let modalImg = document.getElementById("modalImage");
+            modal.style.display = "block";
+            modalImg.src = event.target.src;
+        });
+    });
+
+    // Adicione evento de clique para fechar o modal
+    let modal = document.getElementById("imageModal");
+    let span = modal.querySelector(".fechar"); // Certifique-se de selecionar o span dentro do modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
 }
 
-
+// Também adicione uma verificação para fechar o modal ao clicar fora da imagem
+window.onclick = function(event) {
+    let modal = document.getElementById("imageModal");
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
