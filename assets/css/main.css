@@ -1726,45 +1726,61 @@ input, select, textarea {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 1px solid #ddd;
+    border: 1px solid #DB841D;
     border-radius: 5px;
     overflow: hidden;
     margin: 10px;
     padding: 15px;
-    background-color: #fff;
+    background-color: transparent;
     transition: box-shadow 0.3s ease;
 }
 
 .event-card__image img {
     width: 100%;
-    height: auto;
-    border-bottom: 1px solid #ddd;
-}
-
-.event-card-info {
-    flex-grow: 1;
-    padding: 10px 0;
+    height: 251px;
+    border-radius: 8px 8px 0 0;
 }
 
 .event-card__date, .event-card__title {
-    margin: 5px 0;
+    margin: 8px 0;
 }
+
+.event-card-info {
+    color: #ffffff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    align-items: center;
+}
+
+.event-card__buttons {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	margin-top: 10px;
+
+}
+
 
 .event-card__button {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 15px;
-    background-color: #007BFF;
-    color: white;
+    background-color: transparent;
+    color: #ffffff;
     text-align: center;
+	border: 2px solid #DB841D;
+    border-radius: 5px;
+    cursor: pointer;
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
 .event-card__button:hover {
-    background-color: #0056b3;
+    background-color: #DB841D;
 }
+
 /* Adicionando responsividade */
 @media (max-width: 768px) {
     .events-grid {

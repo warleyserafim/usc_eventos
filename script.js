@@ -107,6 +107,12 @@ function handleEventosConcluidosResponse(csvText) {
 function createEventosConcluidosItem(evento) {
     let item = document.createElement("div");
     item.classList.add("event-card");
+    
+    let rankingButton = '';
+    if (evento.RANKING) {
+        rankingButton = `<a href="${evento.RANKING}" class="event-card__button">Ver Ranking da Etapa</a>`;
+    }
+
     item.innerHTML = `
         <div class="event-card__image">
             <img src="${evento.CAPA}" alt="${evento.NOME}">
@@ -114,11 +120,15 @@ function createEventosConcluidosItem(evento) {
         <div class="event-card-info">
             <div class="event-card__date">${evento.DATA}</div>
             <div class="event-card__title">${evento.NOME}</div>
-            <a href="${evento.LINK}" class="event-card__button">Ver Fotos</a>
+            <div class="event-card__buttons">
+                <a href="${evento.LINK}" class="event-card__button">Ver Fotos</a>
+                ${rankingButton}
+            </div>
         </div>
     `;
     return item;
 }
+
 
 
 function displayEventosConcluidos(eventos) {
