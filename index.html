@@ -5,208 +5,290 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>USC</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-		<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+
+<head>
+	<title>USC</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js"
 		integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js"
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js"
 		integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg=="
 		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	  	<script src="script.js" type="text/javascript" defer></script>
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<script src="script.js" type="text/javascript" defer></script>
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
 
 
 
-	</head>
-	<body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+</head>
 
-				<!-- Header -->
-					<header id="header">
-						<div class="logo">
-                            <img class="logo" src="logoGrande.png" alt="Logo da Empresa">
+<body class="is-preload">
 
-						</div>
-						<div class="content">
-							<div class="inner">
-								<h1>USC Campeonato Brasileiro de Som Automotivo</h1>
-								<p>Fique por dentro de tudo o que acontece no mundo do som automotivo e rebaixados</p>
-							</div>
-						</div>
-						<nav>
-							<ul>
-								<li><a href="#intro">Sobre Nos</a></li>
-								<li><a href="#ranking">Ranking</a></li>
-								<li><a href="#proximos_eventos"> Proximos Eventos</a></li>
-								<li><a href="#elements">Eventos</a></li>
-								<li><a href="#contact">Contato</a></li>
-							</ul>
-						</nav>
+	<div id="eventPopup" class="popup">
+		<span class="close-popup">&times;</span>
+		<p id="popupText"></p>
+		<img class="popup-content" id="popupImage">
+	</div>
 
-						<!-- Carrossel de Apoiadores -->
-						<div class="slider">
-							<div class="slide-track-1">
-								<div class="slide">
-									<img src="images/sapo.png" width="300" height="240" alt="Logo description" loading="lazy">
-								</div>
-								<div class="slide">
-									<img src="images/topsom.jpg" width="300" height="240" alt="Logo description" loading="lazy">
-								</div>
-						
-								<div class="slide">
-									<img src="images/sapo.png" width="300" height="240" alt="Logo description" loading="lazy">
-								</div>
-								<div class="slide">
-									<img src="images/topsom.jpg" width="300" height="240" alt="Logo description" loading="lazy">
-								</div>
-								<div class="slide">
-									<img src="images/sapo.png"width="300" height="240" alt="Logo description" loading="lazy">
-								</div>
-								<div class="slide">
-									<img src="images/topsom.jpg" width="300" height="240" alt="Logo description" loading="lazy">
-								</div>
-								<div class="slide">
-									<img src="images/sapo.png" width="300" height="240" alt="Logo description" loading="lazy">
-								</div>
-								<div class="slide">
-									<img src="images/topsom.jpg" width="300" height="240" alt="Logo description" loading="lazy">
-								</div>
-							</div>
-						</div>
-					</header>
+	<!-- Wrapper -->
+	<div id="wrapper">
 
-					
-				<!-- Main -->
-					<div id="main">
+		<!-- Header -->
+		<header id="header">
+			<div class="logo">
+				<img class="logo" src="logoGrande.png" alt="Logo da Empresa">
 
-						<!-- Intro -->
-							<article id="intro">
-								<h2 class="major">Sobre Nos</h2>
-								<span class="image main"><img src="images/capa.jpg" alt="" /></span>
-								<p>A USC localiza-se em Avaré-SP, de onde são gerenciados os eventos que acontecem no território nacional.</p>
-								<p>Administrada por Reinaldo S. Souto e diretores, a empresa promove e organiza, desde 2003:
-									Competições de som automotivo, de carros rebaixados e shows em todas as regiões do Brasil.</p>
-							</article>
+			</div>
+			<div class="content">
+				<div class="inner">
+					<h1>USC Campeonato Brasileiro de Som Automotivo</h1>
+					<p>Fique por dentro de tudo o que acontece no mundo do som automotivo e rebaixados</p>
+				</div>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="#intro">Sobre Nos</a></li>
+					<li><a href="#ranking">Ranking</a></li>
+					<li><a href="#proximos_eventos"> Proximos Eventos</a></li>
+					<li><a href="#elements">Eventos</a></li>
+					<li><a href="#contact">Contato</a></li>
+				</ul>
+			</nav>
 
-						<!-- Work -->
-						<article id="ranking">
-							<h2 class="major">Ranking</h2>
-							<p>Fique atualizado com os melhores competidores e suas posições no nosso campeonato. Acompanhe de perto os resultados e veja quem está liderando o ranking. Participe dos eventos, veja os destaques e torça pelos seus favoritos!</p>
-							<p>Nossos rankings são atualizados regularmente para refletir as últimas competições e pontuações. Não perca nenhuma atualização e mantenha-se informado sobre quem são os melhores do som automotivo. Clique no botão abaixo para ver o ranking completo.</p>
-							<div class="ranking-container"></div>
-						</article>
-						
+			<!-- Carrossel de Apoiadores -->
+			<div class="slider">
+				<div class="slide-track-1">
+					<div class="slide">
+						<img src="images/sapo.png" width="300" height="240" alt="Logo description" loading="lazy">
 
-						<!-- About -->
-							<article id="proximos_eventos">
-								<h2 class="major">Próximos Eventos</h2>
-
-								<div class="events-container events-grid">
-									
-
-							</article>
-
-						<!-- Contact -->
-						<article id="contact">
-							<h2 class="major">Contato</h2>
-							<form id="contact-form" method="post" action="https://formspree.io/f/manwwpao">
-								<div class="fields">
-									<div class="field half">
-										<label for="name">Nome</label>
-										<input type="text" name="name" id="name" required />
-									</div>
-									<div class="field half">
-										<label for="email">Email</label>
-										<input type="email" name="email" id="email" required />
-									</div>
-									<div class="field">
-										<label for="message">Escreva sua Mensagem</label>
-										<textarea name="message" id="message" rows="4" required></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Enviar Mensagem" class="primary" /></li>
-									<li><input type="reset" value="Cancelar" /></li>
-								</ul>
-								<p id="form-status"></p>
-							</form>
-								<ul class="icons">
-									<li><a href="https://www.tiktok.com/@reinaldocacapa" class="fa-brands fa-tiktok"><span class="label"></span></a></li>
-									<li><a href="https://www.facebook.com/USC-Campeonato-Brasileiro-de-Som-Automotivo-1374692372797510" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-									<li><a href="http://www.instagram.com.br/usc_eventos" class="icon fa-instagram"><span class="label"></span></a></li>
-									<li><a href="reinaldocacapa@hotmail.com" class="icon fa-envelope"><span class="label">GitHub</span></a></li>
-								</ul>
-							</article>
-
-						<!-- Elements -->
-							<article id="elements">
-								<div id="imageModal" class="modal">
-									<span class="fechar">&times;</span>
-									<img class="modal-content" id="modalImage">
-								</div>
-								<h2 class="major">Eventos</h2>
-
-								<div class="eventos-concluidos-container events-grid">
-
-
-								
-							</article>
-	
+					</div>
+					<div class="slide">
+						<img src="images/topsom.jpg" width="300" height="240" alt="Logo description" loading="lazy">
 
 					</div>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<!-- <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>-->
-					</footer>
+					<div class="slide">
+						<img src="images/elemento.jpeg" width="300" height="240" alt="Logo description" loading="lazy">
 
-		
+					</div>
+					<div class="slide">
+						<img src="images/corpoesaude.jpeg" width="300" height="240" alt="Logo description"
+							loading="lazy">
 
+					</div>
+					<div class="slide">
+						<img src="images/jumotos.jpeg" width="300" height="240" alt="Logo description" loading="lazy">
+
+					</div>
+					<div class="slide">
+						<img src="images/stetsom.jpg" width="300" height="240" alt="Logo description" loading="lazy">
+
+					</div>
+					<div class="slide">
+						<img src="images/taramps.jpg" width="300" height="240" alt="Logo description" loading="lazy">
+
+					</div>
+					<div class="slide">
+						<img src="images/ultra.jpg" width="300" height="240" alt="Logo description" loading="lazy">
+
+					</div>
+					<div class="slide">
+						<img src="images/eros.jpg" width="300" height="240" alt="Logo description" loading="lazy">
+
+					</div>
+					<div class="slide">
+						<img src="images/sapo.png" width="300" height="240" alt="Logo description" loading="lazy">
+
+					</div>
+					<div class="slide">
+						<img src="images/topsom.jpg" width="300" height="240" alt="Logo description" loading="lazy">
+
+					</div>
+
+					<div class="slide">
+						<img src="images/elemento.jpeg" width="300" height="240" alt="Logo description" loading="lazy">
+
+					</div>
+					<div class="slide">
+						<img src="images/corpoesaude.jpeg" width="300" height="240" alt="Logo description"
+							loading="lazy">
+
+					</div>
+					<div class="slide">
+						<img src="images/jumotos.jpeg" width="300" height="240" alt="Logo description" loading="lazy">
+					</div>
+					<div class="slide">
+						<img src="images/stetsom.jpg" width="300" height="240" alt="Logo description" loading="lazy">
+
+					</div>
+					<div class="slide">
+						<img src="images/taramps.jpg" width="300" height="240" alt="Logo description" loading="lazy">
+
+					</div>
+					<div class="slide">
+						<img src="images/ultra.jpg" width="300" height="240" alt="Logo description" loading="lazy">
+
+					</div>
+					<div class="slide">
+						<img src="images/eros.jpg" width="300" height="240" alt="Logo description" loading="lazy">
+
+					</div>
+				</div>
 			</div>
-
-		<!-- BG -->
-			<div id="bg"></div>
+		</header>
 
 
-			<script>
-				document.getElementById('contact-form').addEventListener('submit', function(event) {
-					event.preventDefault();
-					const form = event.target;
-					const formData = new FormData(form);
-					const xhr = new XMLHttpRequest();
-					xhr.open('POST', form.action);
-					xhr.setRequestHeader('Accept', 'application/json');
-					xhr.onreadystatechange = function() {
-						if (xhr.readyState !== XMLHttpRequest.DONE) return;
-						const statusElement = document.getElementById('form-status');
-						if (xhr.status === 200) {
-							form.reset();
-							statusElement.textContent = 'Mensagem enviada com sucesso!';
-							statusElement.style.color = 'green';
-						} else {
-							statusElement.textContent = 'Houve um problema ao enviar sua mensagem.';
-							statusElement.style.color = 'red';
-						}
-					};
-					xhr.send(formData);
-				});
-				</script>
+		<!-- Main -->
+		<div id="main">
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<!-- Intro -->
+			<article id="intro">
+				<h2 class="major">Sobre Nos</h2>
+				<span class="image main"><img src="images/capa.jpg" alt="" /></span>
+				<p>A USC localiza-se em Avaré-SP, de onde são gerenciados os eventos que acontecem no território
+					nacional.</p>
+				<p>Administrada por Reinaldo S. Souto e diretores, a empresa promove e organiza, desde 2003:
+					Competições de som automotivo, de carros rebaixados e shows em todas as regiões do Brasil.</p>
+			</article>
+
+			<!-- Work -->
+			<article id="ranking">
+				<h2 class="major">Ranking</h2>
+				<p>Fique atualizado com os melhores competidores e suas posições no nosso campeonato. Acompanhe de perto
+					os resultados e veja quem está liderando o ranking. Participe dos eventos, veja os destaques e torça
+					pelos seus favoritos!</p>
+				<p>Nossos rankings são atualizados regularmente para refletir as últimas competições e pontuações. Não
+					perca nenhuma atualização e mantenha-se informado sobre quem são os melhores do som automotivo.
+					Clique no botão abaixo para ver o ranking completo.</p>
+				<div class="ranking-container"></div>
+			</article>
 
 
-	</body>
+			<!-- About -->
+			<article id="proximos_eventos">
+				<h2 class="major">Próximos Eventos</h2>
+
+				<div class="events-container events-grid">
+
+
+			</article>
+
+			<!-- Contact -->
+			<article id="contact">
+				<h2 class="major">Contato</h2>
+				<form id="contact-form" method="post" action="https://formspree.io/f/manwwpao">
+					<div class="fields">
+						<div class="field half">
+							<label for="name">Nome</label>
+							<input type="text" name="name" id="name" required />
+						</div>
+						<div class="field half">
+							<label for="email">Email</label>
+							<input type="email" name="email" id="email" required />
+						</div>
+						<div class="field">
+							<label for="message">Escreva sua Mensagem</label>
+							<textarea name="message" id="message" rows="4" required></textarea>
+						</div>
+					</div>
+					<ul class="actions">
+						<li><input type="submit" value="Enviar Mensagem" class="primary" /></li>
+						<li><input type="reset" value="Cancelar" /></li>
+					</ul>
+					<p id="form-status"></p>
+				</form>
+				<ul class="icons">
+					<li><a href="https://www.tiktok.com/@reinaldocacapa" class="fa-brands fa-tiktok"><span
+								class="label"></span></a></li>
+					<li><a href="https://www.facebook.com/USC-Campeonato-Brasileiro-de-Som-Automotivo-1374692372797510"
+							class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="http://www.instagram.com.br/usc_eventos" class="icon fa-instagram"><span
+								class="label"></span></a></li>
+					<li><a href="reinaldocacapa@hotmail.com" class="icon fa-envelope"><span
+								class="label">GitHub</span></a></li>
+				</ul>
+			</article>
+
+			<!-- Elements -->
+			<article id="elements">
+				<div id="imageModal" class="modal">
+					<span class="fechar">&times;</span>
+					<img class="modal-content" id="modalImage">
+				</div>
+				<h2 class="major">Eventos</h2>
+
+				<div class="eventos-concluidos-container events-grid">
+
+
+
+			</article>
+
+
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<!-- <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>-->
+		</footer>
+
+	</div>
+
+	<!-- Botão flutuante do WhatsApp -->
+	<a href="https://api.whatsapp.com/send?phone=+5514997417848&text=Olá, gostaria de mais informações sobre o evento."
+		class="whatsapp-button" target="_blank">
+		<i class="fab fa-whatsapp"></i>
+	</a>
+
+	<!-- BG -->
+	<div id="bg"></div>
+
+
+
+
+
+	<script>
+		document.getElementById('contact-form').addEventListener('submit', function (event) {
+			event.preventDefault();
+			const form = event.target;
+			const formData = new FormData(form);
+			const xhr = new XMLHttpRequest();
+			xhr.open('POST', form.action);
+			xhr.setRequestHeader('Accept', 'application/json');
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState !== XMLHttpRequest.DONE) return;
+				const statusElement = document.getElementById('form-status');
+				if (xhr.status === 200) {
+					form.reset();
+					statusElement.textContent = 'Mensagem enviada com sucesso!';
+					statusElement.style.color = 'green';
+				} else {
+					statusElement.textContent = 'Houve um problema ao enviar sua mensagem.';
+					statusElement.style.color = 'red';
+				}
+			};
+			xhr.send(formData);
+		});
+	</script>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+
+</body>
+
 </html>

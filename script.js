@@ -1,3 +1,104 @@
+// Carregar os dados da Google Sheet
+const sheetId = "1SmOUrkJqCRIRqO2rInjG1gYABrouGzw8TblBPykG06E";
+const sheetName = encodeURIComponent("PROXIMOS EVENTOS");
+const sheetRanking = encodeURIComponent("RANKING");
+const sheetEventosConcluidos = encodeURIComponent("EVENTOS");
+const sheetURL = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetName}`;
+const sheetURLRanking = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetRanking}`;
+const sheetURLEventosConcluidos = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetEventosConcluidos}`;
+
+fetch(sheetURL)
+    .then((response) => response.text())
+    .then((csvText) => handleResponse(csvText))
+    .catch((error) => console.error('Error fetching sheetURL:', error));
+
+function handleResponse(csvText) {
+    let sheetObjects = csvToObjects(csvText);
+    if (sheetObjects) {
+        displayEvents(sheetObjects);
+        checkForEventThisWeek(sheetObjects);
+    } else {
+        console.error('Error converting CSV to objects.');
+    }
+    console.log('Sheet Objects:', sheetObjects);
+}
+
+function csvToObjects(csv) {
+    const csvRows = csv.split("\n");
+    if (csvRows.length < 2) {
+        console.error('CSV does not have enough rows.');
+        return null;
+    }
+    const propertyNames = csvSplit(csvRows[0]);
+    let objects = [];
+    for (let i = 1, max = csvRows.length; i < max; i++) {
+        let thisObject = {};
+        let row = csvSplit(csvRows[i]);
+        if (row.length !== propertyNames.length) {
+            console.error('Row length does not match property names length:', row, propertyNames);
+            continue;
+        }
+        for (let j = 0, max = row.length; j < max; j++) {
+            thisObject[propertyNames[j]] = row[j];
+        }
+        objects.push(thisObject);
+    }
+    return objects;
+}
+
+function csvSplit(row) {
+    return row.split(",").map((val) => val.substring(1, val.length - 1));
+}
+
+// Função para analisar a data no formato "DD/MM/YYYY HH:MM:SS"
+function parseDate(dateString) {
+    const parts = dateString.split(' ');
+    const dateParts = parts[0].split('/');
+    const timeParts = parts[1] ? parts[1].split(':') : [0, 0, 0]; // Se a hora não for fornecida, definir como meia-noite
+    return new Date(dateParts[2], dateParts[1] - 1, dateParts[0], timeParts[0], timeParts[1], timeParts[2]);
+}
+
+// Função para verificar eventos desta semana
+function checkForEventThisWeek(events) {
+    const today = new Date();
+    const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay()));
+    const endOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 7));
+    console.log('Start of week:', startOfWeek, 'End of week:', endOfWeek);
+
+    events.forEach((event) => {
+        if (!event || !event.DATE) {
+            console.error('Event or event date is undefined:', event);
+            return;
+        }
+        let eventDate = parseDate(event.DATE);
+        console.log('Checking event date:', eventDate);
+        if (eventDate >= startOfWeek && eventDate <= endOfWeek) {
+            showEventPopup(event);
+        }
+    });
+}
+// Função para mostrar o popup do evento
+function showEventPopup(event) {
+    console.log('Showing event popup for event:', event);
+    let popup = document.getElementById("eventPopup");
+    let popupImg = document.getElementById("popupImage");
+    let popupText = document.getElementById("popupText");
+
+    popupImg.src = event.IMAGEM;
+    popupText.textContent = `Venha curtir nosso próximo evento: ${event.NAME} no dia ${event.DATE}`;
+
+    popup.classList.add("show");
+
+    // Close the popup when the close button is clicked
+    let closePopup = popup.querySelector(".close-popup");
+    closePopup.onclick = function () {
+        popup.classList.remove("show");
+        setTimeout(() => {
+            popup.style.display = "none";
+        }, 500); // Match this duration with the CSS transition duration
+    }
+}
+
 function createEventCard(event) {
     let card = document.createElement("div");
     card.classList.add("event-card");
@@ -20,53 +121,13 @@ function displayEvents(events) {
     });
 }
 
-// Carregar os dados da Google Sheet
-const sheetId = "1SmOUrkJqCRIRqO2rInjG1gYABrouGzw8TblBPykG06E";
-const sheetName = encodeURIComponent("PROXIMOS EVENTOS");
-const sheetRanking = encodeURIComponent("RANKING");
-const sheetEventosConcluidos = encodeURIComponent("EVENTOS");
-const sheetURL = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetName}`;
-const sheetURLRanking = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetRanking}`;
-const sheetURLEventosConcluidos = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetEventosConcluidos}`;
-
-fetch(sheetURL)
-    .then((response) => response.text())
-    .then((csvText) => handleResponse(csvText));
-
-function handleResponse(csvText) {
-    let sheetObjects = csvToObjects(csvText);
-    displayEvents(sheetObjects);
-    console.log(sheetObjects);
-}
-
-function csvToObjects(csv) {
-    const csvRows = csv.split("\n");
-    const propertyNames = csvSplit(csvRows[0]);
-    let objects = [];
-    for (let i = 1, max = csvRows.length; i < max; i++) {
-        let thisObject = {};
-        let row = csvSplit(csvRows[i]);
-        for (let j = 0, max = row.length; j < max; j++) {
-            thisObject[propertyNames[j]] = row[j];
-        }
-        objects.push(thisObject);
-    }
-    return objects;
-}
-
-function csvSplit(row) {
-    return row.split(",").map((val) => val.substring(1, val.length - 1));
-}
-
 // Ranking
-
 
 function createRankingItem(rank) {
     let item = document.createElement("div");
     item.classList.add("ranking-item");
     item.innerHTML = `
         <a href=${rank.LINK} class="ranking-button"><i class="fas fa-trophy"></i> Ver Ranking</a>
-
     `;
     return item;
 }
@@ -78,28 +139,36 @@ function displayRanking(rankings) {
     });
 }
 
-
 fetch(sheetURLRanking)
     .then((response) => response.text())
-    .then((csvText) => handleRankingResponse(csvText));
+    .then((csvText) => handleRankingResponse(csvText))
+    .catch((error) => console.error('Error fetching sheetURLRanking:', error));
 
 function handleRankingResponse(csvText) {
     let sheetObjects = csvToObjects(csvText);
-    displayRanking(sheetObjects);
-    console.log(sheetObjects);
+    if (sheetObjects) {
+        displayRanking(sheetObjects);
+    } else {
+        console.error('Error converting CSV to objects.');
+    }
+    console.log('Sheet Objects:', sheetObjects);
 }
-
 
 // Eventos Concluidos
 
 fetch(sheetURLEventosConcluidos)
     .then((response) => response.text())
-    .then((csvText) => handleEventosConcluidosResponse(csvText));
+    .then((csvText) => handleEventosConcluidosResponse(csvText))
+    .catch((error) => console.error('Error fetching sheetURLEventosConcluidos:', error));
 
 function handleEventosConcluidosResponse(csvText) {
     let sheetObjects = csvToObjects(csvText);
-    displayEventosConcluidos(sheetObjects);
-    console.log(sheetObjects);
+    if (sheetObjects) {
+        displayEventosConcluidos(sheetObjects);
+    } else {
+        console.error('Error converting CSV to objects.');
+    }
+    console.log('Sheet Objects:', sheetObjects);
 }
 
 function createEventosConcluidosItem(evento) {
@@ -159,3 +228,16 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+
+// Funcao para fechar popup ao clicar fora
+
+window.onclick = function(event) {
+    let popup = document.getElementById("eventPopup");
+    if (event.target == popup) {
+        popup.style.display = "none";
+    }
+}
+
+
+
