@@ -240,4 +240,28 @@ window.onclick = function(event) {
 }
 
 
+var acc = document.getElementsByClassName("accordion");
+
+for (var i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    // Fecha todas as seções abertas
+    for (var j = 0; j < acc.length; j++) {
+      if (acc[j] !== this) {
+        acc[j].classList.remove("active");
+        var panel = acc[j].nextElementSibling;
+        panel.style.display = "none";
+      }
+    }
+
+    // Abre ou fecha a seção clicada
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
 
