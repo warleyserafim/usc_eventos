@@ -2087,13 +2087,16 @@ body.is-preload #footer {
   background-color: transparent;
   color: #444;
   cursor: pointer;
-  padding: 0 18px;
+  padding: 0 10px; 
   width: 100%;
   border: none;
   text-align: center;
   outline: none;
-  font-size: 15px;
+  font-size: 14px; 
   transition: 0.4s;
+  word-wrap: break-word;
+  white-space: normal;
+  margin-bottom: 3px;
 }
 
 .active,
@@ -2106,4 +2109,12 @@ body.is-preload #footer {
   display: none;
   background-color: transparent;
   overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .accordion {
+    font-size: 11px;
+    padding: 0 10px; 
+    margin-bottom: 3px;
+  }
 }
