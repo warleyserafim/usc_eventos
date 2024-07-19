@@ -1767,7 +1767,8 @@ body.is-preload #footer {
     cursor: default;
     user-select: none;
     touch-action: none;
-	width: 100%;
+	  width: 100%;
+  
 }
 
 .slider:before,
@@ -1802,6 +1803,7 @@ body.is-preload #footer {
     display: flex;
     align-items: center;
     text-align: center;
+    
 }
 
 .slider .slide img {
@@ -1812,6 +1814,8 @@ body.is-preload #footer {
     display: inline-block;
     max-width: 100%;
     height: auto;
+    display: block;
+
 }
 
 @keyframes scroll-l {
