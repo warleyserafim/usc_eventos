@@ -85,7 +85,7 @@ function showEventPopup(event) {
     let popupText = document.getElementById("popupText");
 
     popupImg.src = event.IMAGEM;
-    popupText.textContent = `Venha curtir nosso próximo evento: ${event.NAME} no dia ${event.DATE}`;
+    popupText.innerHTML = `<h3>Venha curtir nosso próximo evento: ${event.NAME} no dia ${event.DATE}</h3>`;
 
     popup.classList.add("show");
 
