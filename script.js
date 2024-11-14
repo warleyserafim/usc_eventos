@@ -65,6 +65,8 @@ function checkForEventThisWeek(events) {
     const endOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 7));
     console.log('Start of week:', startOfWeek, 'End of week:', endOfWeek);
 
+    let weeklyEventFound = false;
+
     events.forEach((event) => {
         if (!event || !event.DATE) {
             console.error('Event or event date is undefined:', event);
@@ -72,11 +74,31 @@ function checkForEventThisWeek(events) {
         }
         let eventDate = parseDate(event.DATE);
         console.log('Checking event date:', eventDate);
-        if (eventDate >= startOfWeek && eventDate <= endOfWeek) {
-            showEventPopup(event);
+        if (eventDate >= startOfWeek && eventDate <= endOfWeek && !weeklyEventFound) {
+            weeklyEventFound = true;
+            showEventPopup(event);  // Exibe o popup da semana
+
+            // Aguarda o fechamento do popup da semana antes de mostrar o da final
+            let closePopup = document.querySelector("#eventPopup .close-popup");
+            closePopup.onclick = function () {
+                document.getElementById("eventPopup").classList.remove("show");
+                setTimeout(() => {
+                    setTimeout(() => {
+                        showFinalPopup(); // Exibe o popup da final após 1 minuto do fechamento
+                    }, 500); // 1 minuto
+                }, 500); // Tempo de transição para fechar o popup
+            };
         }
     });
+
+    // Se não houver evento da semana, mostra o popup da final direto após 1 minuto
+    if (!weeklyEventFound) {
+        setTimeout(() => {
+            showFinalPopup();
+        }, 500);
+    }
 }
+
 // Função para mostrar o popup do evento
 function showEventPopup(event) {
     console.log('Showing event popup for event:', event);
@@ -262,6 +284,30 @@ for (var i = 0; i < acc.length; i++) {
       panel.style.display = "block";
     }
   });
+}
+
+
+function showFinalPopup() {
+    console.log('Showing final event popup for event:', );
+    let popup = document.getElementById("eventPopup");
+    let popupImg = document.getElementById("popupImage");
+    let popupText = document.getElementById("popupText");
+
+    popupImg.src = 'https://i.ibb.co/C63NBzM/Whats-App-Image-2024-11-01-at-14-00-49-2.jpg'
+    popupText.innerHTML = `<h2>🏆 Não perca a grande final: FINAL USC - AVARE - SP </h2>
+                           <p>Prepare-se para um evento incrível!</p>`;
+
+    // Exibe o popup da final com destaque
+    popup.classList.add("show", "final-popup");
+
+    // Fecha o popup ao clicar no botão de fechamento
+    let closePopup = popup.querySelector(".close-popup");
+    closePopup.onclick = function () {
+        popup.classList.remove("show", "final-popup");
+        setTimeout(() => {
+            popup.style.display = "none";
+        }, 60000); // Match this duration with the CSS transition duration
+    }
 }
 
 

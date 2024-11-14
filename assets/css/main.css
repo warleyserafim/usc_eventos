@@ -2122,3 +2122,18 @@ body.is-preload #footer {
     margin-bottom: 3px;
   }
 }
+
+
+#eventPopup.final-popup {
+  background-color: rgba(0,0,0,0.9);
+  color: #333;
+}
+
+#eventPopup.final-popup h2 {
+  color: #d32f2f;
+  font-size: 1.5em;
+}
+
+#eventPopup.final-popup p {
+  font-size: 1.2em;
+}
