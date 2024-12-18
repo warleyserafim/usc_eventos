@@ -288,14 +288,18 @@ for (var i = 0; i < acc.length; i++) {
 
 
 function showFinalPopup() {
-    console.log('Showing final event popup for event:', );
+    console.log('Showing final event popup for event:');
     let popup = document.getElementById("eventPopup");
     let popupImg = document.getElementById("popupImage");
     let popupText = document.getElementById("popupText");
 
-    popupImg.src = 'https://i.ibb.co/C63NBzM/Whats-App-Image-2024-11-01-at-14-00-49-2.jpg'
-    popupText.innerHTML = `<h2>🏆 Não perca a grande final: FINAL USC - AVARE - SP </h2>
-                           <p>Prepare-se para um evento incrível!</p>`;
+    popupText.innerHTML = `
+        <h2>🏆 Veja a Galeria dos Campeões 2024 </h2>
+        <p>Clique na Imagem!</p>
+        <a href="https://docs.google.com/spreadsheets/d/1jJZWQ9TOWZj6XYwWJPsmapL5yUWAjIHL/edit?usp=sharing&ouid=100208514099954901743&rtpof=true&sd=true" target="_blank">
+            <img src="https://i.ibb.co/Gt4F6GM/Whats-App-Image-2024-12-17-at-15-54-57.jpg" alt="Galeria dos Campeões 2024" style="max-width: 100%; cursor: pointer;">
+        </a>
+    `;
 
     // Exibe o popup da final com destaque
     popup.classList.add("show", "final-popup");
@@ -309,5 +313,6 @@ function showFinalPopup() {
         }, 60000); // Match this duration with the CSS transition duration
     }
 }
+
 
 
