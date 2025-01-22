@@ -2137,3 +2137,21 @@ body.is-preload #footer {
 #eventPopup.final-popup p {
   font-size: 1.2em;
 }
+
+.warning {
+  color: #d9534f;
+  font-weight: bold;
+}
+
+.obs {
+  font-style: italic;
+  font-weight: bold;
+
+}
+
+.category {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
